@@ -1,5 +1,4 @@
 let disparo = false;
-
 class SnowBall {
   construtor(xSnowBall, ySnowBall, imgSnowBall) {
     this.xSnowBall = xSnowBall;

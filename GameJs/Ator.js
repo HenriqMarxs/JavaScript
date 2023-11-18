@@ -16,7 +16,7 @@ class Persona {
   }
   movimentaRight() {
     image(imgAtor, xAtor, yAtor, 60, 60);
-    if (xAtor <= 1140) {
+    if (xAtor <= 1090) {
       xAtor += 5;
     }
   }
