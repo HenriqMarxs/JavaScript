@@ -21,9 +21,11 @@ let yBoss = 480;
 let vidaBoss = 10;
 
 function boss1() {
+  let snowBall = new SnowBall(xSnowBall, ySnowBall, imgSnowBall);
   let golem = new boss(xBoss, yBoss, imgBoss);
   golem.mostraBoss();
-  atack();
+  snowBall.mostraSnow();
+  atack(snowBall);
 }
 
 let xSnowBall = 1500;
@@ -33,8 +35,6 @@ var endAtack = false;
 var coldow = 2100;
 
 function atack() {
-  let snowBall = new SnowBall(xSnowBall, ySnowBall, imgSnowBall);
-  snowBall.mostraSnow();
   setTimeout(function () {
     snowBall.iniciaAtack();
     snowBall.voa();
@@ -45,6 +45,5 @@ function atack() {
     if (xSnowBall <= 0) {
       snowBall.resetAtack();
     }
-    atack();
   }, coldow);
 }
