@@ -20,30 +20,43 @@ let xBoss = 900;
 let yBoss = 480;
 let vidaBoss = 10;
 
+
 function boss1() {
-  let snowBall = new SnowBall(xSnowBall, ySnowBall, imgSnowBall);
   let golem = new boss(xBoss, yBoss, imgBoss);
   golem.mostraBoss();
-  snowBall.mostraSnow();
-  atack(snowBall);
+  atack();
 }
 
 let xSnowBall = 1500;
 let ySnowBall = 540;
-let atacando = false;
+let atq = false;
 var endAtack = false;
 var coldow = 2100;
 
 function atack() {
-  setTimeout(function () {
+  let snowBall = new SnowBall(xSnowBall, ySnowBall, imgSnowBall)
+  snowBall.mostraSnow();
+  if(atq == false){
     snowBall.iniciaAtack();
-    snowBall.voa();
-    if (snowBall.contato()) {
-      vida -= 1;
+  }
+   if(snowBall.contato()){
+     vida-=1;
+   snowBall.resetAtack();
+ }
+  else{
+    if(xSnowBall<0){
       snowBall.resetAtack();
     }
-    if (xSnowBall <= 0) {
-      snowBall.resetAtack();
-    }
-  }, coldow);
+   
+ }
 }
+
+//  function contato(){
+//  let contato = false;
+//  if (ySnowBall + 80 >= yAtor && ySnowBall + 40 <= yAtor + 60) {
+//    if (xSnowBall >= xAtor && xSnowBall <= xAtor + 30) {
+//        contato = true;
+//         return contato;
+//        }
+//    }
+//  }
