@@ -32,31 +32,34 @@ let ySnowBall = 540;
 let atq = false;
 var endAtack = false;
 var coldow = 2100;
+var i =0;
 
 function atack() {
-  let snowBall = new SnowBall(xSnowBall, ySnowBall, imgSnowBall)
+  let snowBall = new SnowBall(xSnowBall, ySnowBall, imgSnowBall);
   snowBall.mostraSnow();
-  if(atq == false){
-    snowBall.iniciaAtack();
-  }
+
    if(snowBall.contato()){
      vida-=1;
-   snowBall.resetAtack();
+     snowBall.resetAtack();
  }
   else{
     if(xSnowBall<0){
       snowBall.resetAtack();
     }
-   
+    setTimeout(()=>{
+      snowBall.iniciaAtack();
+    }, coldow); 
+
+    if(atq == true){
+      setTimeout(function r(){
+       if(i==0){
+        snowBall.reload();
+        i++;
+       }
+        setTimeout(r, coldow+2400);
+        
+        },coldow+2400);
+    }
+    
  }
 }
-
-//  function contato(){
-//  let contato = false;
-//  if (ySnowBall + 80 >= yAtor && ySnowBall + 40 <= yAtor + 60) {
-//    if (xSnowBall >= xAtor && xSnowBall <= xAtor + 30) {
-//        contato = true;
-//         return contato;
-//        }
-//    }
-//  }

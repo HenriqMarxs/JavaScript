@@ -5,24 +5,29 @@ class SnowBall {
     this.ySnowBall = ySnowBall;
     this.imgSnowBall = imgSnowBall;
   }
+
   mostraSnow() {
     image(imgSnowBall, xSnowBall, ySnowBall, 80, 80);
   }
+
   resetAtack() {
-    atq = true;
+    i=0;
     xSnowBall = 1500;
   }
+
   iniciaAtack() {
-      // setTimeout(()=>{
-        if (xSnowBall >= 900){
+        if (xSnowBall >= 900 && atq == false){
           xSnowBall = 900;
+          atq =true;
       } 
       if (xSnowBall <= 900){
           xSnowBall -=15;
       }
-        // },coldow);
   }
-
+reload(){
+  atq = false;
+}
+ 
   contato(){
   let contato = false;
   if (ySnowBall + 80 >= yAtor && ySnowBall + 40 <= yAtor + 60) {
