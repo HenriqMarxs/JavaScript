@@ -1,9 +1,14 @@
+//VARIAVEIS ATRELADAS AO PROTAGONISTA
+let xAtor = 200;
+let yAtor = 610;
+let vida = 5;
+let pulo = false;
+let pico = false;
+let andouLeft = false;
+let andouRight = true;
+let imgAtor = imgRight;
+
 class Persona {
-  construtor(xAtor, yAtor, vida) {
-    this.xAtor = xAtor;
-    this.yAtor = yAtor;
-    this.vida = vida;
-  }
   mostraAtor() {
     image(imgAtor, xAtor, yAtor, 60, 60);
   }
@@ -39,36 +44,20 @@ class Persona {
       pulo = false;
     }
   }
-  death() {
-    xAtor = 200;
-    yAtor = 610;
-    vida = 5;
-    pulo = false;
-    pico = false;
-  }
 }
 
-//VARIAVEIS ATRELADAS AO PROTAGONISTA
-var xAtor = 200;
-var yAtor = 610;
-let vida = 5;
-let pulo = false;
-let pico = false;
-var andouLeft = false;
-var andouRight = true;
-let imgAtor;
-
 function protagonista() {
-  var prota = new Persona(xAtor, yAtor, vida);
+
+  let prota = new Persona();
   if (andouRight == true) {
     imgAtor = imgRight;
   }
   if (andouLeft == true) {
     imgAtor = imgLeft;
   }
-  prota.mostraVida();
+  prota.mostraVida(vida);
   if (!keyIsDown(65) && !keyIsDown(68)) {
-    prota.mostraAtor();
+    prota.mostraAtor(xAtor, yAtor);
   }
   if (keyIsDown(68)) {
     imgAtor = imgRight;
@@ -85,12 +74,36 @@ function protagonista() {
   if (keyIsDown(32) || pulo == true) {
     pulo = true;
     if (yAtor < 610 && pico == true) {
-      prota.queda();
+      prota.queda(yAtor);
     } else {
-      prota.jump();
+      prota.jump(yAtor);
+    }
+  }
+  if(keyIsDown(81) || arremessando == true){
+    if(keyIsDown(81)){
+      skillPlayer(xAtor, yAtor, true);
+      arremessando = true;
+
+
+    }else{
+      skillPlayer(xAtor, yAtor, false);
     }
   }
 }
+function skillPlayer(x, y, isClicked){
+  let kunai = new Kunai();
+  kunai.mostraKunai()
+  kunai.arremessaKunai(x+20, y+30, isClicked);
+  return 0;
+}
+
+function contato(yAtor, xAtor, yAtqInimigo, xAtqInimigo){
+  if (yAtqInimigo + 80 >=  yAtor&& yAtqInimigo + 40 <= yAtor + 60){
+    if (xAtqInimigo >= xAtor && xAtqInimigo <= xAtor + 30) {
+          return true;
+        }
+    }
+  } 
 
 function gameover() {
   xAtor = 200;
